@@ -1,12 +1,27 @@
+import { useState } from 'react'
+import PizzaLogo from '../../assets/favicon.jpg'
+import Request from '../../utils/requests_client';
+import { store_access_token } from '../../utils/localStorageManager';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginLogoutView() {
+    const navigate = useNavigate()
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (event: React.FormEvent<EventTarget>): void => {
+        event.preventDefault();
+        const response: string = await Request.post('/admin/login', { 'phone': phone, 'hashed_password': password })
+        store_access_token(response.access_token)
+        navigate('/')
+    }
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        className="mx-auto h-20 w-auto"
+                        src={PizzaLogo}
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -15,19 +30,25 @@ export default function LoginLogoutView() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                Email address
+                            <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
+                                Phone number
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
+                                    id="phone"
+                                    name="phone"
+                                    type="tel"
+                                    value={phone}
+                                    onChange={e => {
+                                        setPhone(e.target.value)
+
+                                    }}
+                                    pattern='[0-9]{10}'
+                                    autoComplete="phone"
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                 />
                             </div>
                         </div>
@@ -48,9 +69,14 @@ export default function LoginLogoutView() {
                                     id="password"
                                     name="password"
                                     type="password"
+                                    value={password}
+                                    onChange={e => {
+                                        setPassword(e.target.value)
+
+                                    }}
                                     autoComplete="current-password"
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                 />
                             </div>
                         </div>
@@ -66,9 +92,9 @@ export default function LoginLogoutView() {
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        Not a member?{' '}
+                        Not authorised?{' '}
                         <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Start a 14 day free trial
+                            Request Access?
                         </a>
                     </p>
                 </div>

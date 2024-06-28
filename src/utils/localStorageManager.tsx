@@ -9,6 +9,9 @@ export const storeMapObject = (mapObj: any, key: string) => {
 
 
 export const get_auth_token = () => {
-    return localStorage.getItem('auth_token')
+    return localStorage.getItem('access_token')
 }
 
+export const store_access_token = (token: string) => {
+    localStorage.setItem('access_token', token)
+}
