@@ -4,6 +4,7 @@ import LoginLogoutView from "../components/views/LoginView";
 import HomePageView from "../components/views/HomePageView";
 import ProtectedRoute from "./protectedRoute";
 import { get_auth_token } from "./localStorageManager";
+import LeaderboardView from "../components/views/LeaderBoardView";
 
 
 
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 element: <HomePageView />,
                 path: "/"
+            },
+            {
+                element: <LeaderboardView />,
+                path: "/leaderboard"
             }
         ]
     }, {

@@ -15,3 +15,7 @@ export const get_auth_token = () => {
 export const store_access_token = (token: string) => {
     localStorage.setItem('access_token', token)
 }
+
+export const remove_auth_token = () => {
+    localStorage.removeItem('access_token')
+}
