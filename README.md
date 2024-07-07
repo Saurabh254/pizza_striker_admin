@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Pizza Striker Frontend Project</h1>
+<h1 align="center" id="title">Pizza Striker Admin Dashboard Project</h1>
 
 ![Pizza-Striker](https://socialify.git.ci/Saurabh254/pizza_striker_admin/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Auto)
 
