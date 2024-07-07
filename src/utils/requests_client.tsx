@@ -25,6 +25,11 @@ class RequestClient {
           Authorization: `Bearer ${auth_token}`,
         },
       });
+      console.log(response.status);
+      console.log("it is what it is ");
+      if (response.status == 401) {
+        return redirect("/auth/login");
+      }
       return response.json();
     } else {
       const response = await fetch(_url, {
