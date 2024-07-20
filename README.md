@@ -37,5 +37,5 @@ Technologies used in the frontend:
 
 <h2>Project Repository</h2>
 
-- [Backend Repository](https://github.com/Saurabh254/pizza_striker-backend)
+- [Backend Repository](https://github.com/Saurabh254/pizza_striker_backend)
 - [Frontend Repository](https://github.com/Saurabh254/pizza_striker_admin)
